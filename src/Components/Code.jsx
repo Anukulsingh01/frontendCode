@@ -4,30 +4,23 @@ import { styled } from "@mui/material/styles";
 import { useContext } from 'react';
 import { DataContext } from '../contexts/DataProvider';
 
-const Container=styled(Box)`
-display:flex;
-flex-wrap:wrap;
-background-color:#060606;
- `;
-// const Container = styled(Box)(({ theme }) => ({
-//   display: 'flex',
-//   backgroundColor: '#060606',
-
-//   // Custom media query for width < 800px
-//   [`@media (max-width:800px)`]: {
-//     flexDirection: 'column',
-//   },
-// }));
-const CoderWrapper = styled(Box)`
-  min-width: 250px;
-  flex: 1; /* optional: allows it to grow */
+const Container = styled(Box)`
+  display: flex;
+  flex-wrap: wrap;
+  background-color: #060606;
+  gap: 8px; /* optional: adds spacing between wrapped items */
 `;
+const EditorWrapper = styled(Box)`
+  flex: 1 1 300px; /* allow to grow/shrink but not below 300px */
+  min-width: 300px;
+`;
+
 
 const Code=()=>{
     const{html,setHtml,css,setCss,js,setJs}=useContext(DataContext);
     return(
         <Container>
-  <CoderWrapper>
+  <EditorWrapper>
     <Editor
       heading="HTML"
       sign="/"
@@ -35,8 +28,8 @@ const Code=()=>{
       value={html}
       onChange={setHtml}
     />
-  </CoderWrapper>
-  <CoderWrapper>
+  </EditorWrapper>
+  <EditorWrapper>
     <Editor
       heading="CSS"
       sign="*"
@@ -44,8 +37,8 @@ const Code=()=>{
       value={css}
       onChange={setCss}
     />
-  </CoderWrapper>
-  <CoderWrapper>
+  </EditorWrapper>
+  <EditorWrapper>
     <Editor
       heading="JS"
       sign="<>"
@@ -53,7 +46,7 @@ const Code=()=>{
       value={js}
       onChange={setJs}
     />
-  </CoderWrapper>
+  </EditorWrapper>
 </Container>
 
     );
